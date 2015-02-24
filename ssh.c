@@ -4734,6 +4734,8 @@ static int do_ssh1_login(Ssh ssh, unsigned char *in, int inlen,
 	sfree(s->publickey_comment);
     }
 
+    ssh->exitcode = -1;
+
     logevent("Authentication successful");
 
     crFinish(1);
@@ -10633,7 +10635,7 @@ static const char *ssh_init(void *frontend_handle, void **backend_handle,
     ssh->kex_ctx = NULL;
     ssh->hostkey = NULL;
     ssh->hostkey_str = NULL;
-    ssh->exitcode = -1;
+    ssh->exitcode = 1;
     ssh->close_expected = FALSE;
     ssh->clean_exit = FALSE;
     ssh->state = SSH_STATE_PREPACKET;
